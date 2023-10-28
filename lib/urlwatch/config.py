@@ -103,6 +103,7 @@ class CommandConfig(BaseConfig):
         group.add_argument('--features', action='store_true', help='list supported jobs/filters/reporters')
         group.add_argument('--gc-cache', metavar='RETAIN_LIMIT', type=int, help='remove old cache entries, keeping the latest RETAIN_LIMIT (default: 1)',
                            nargs='?', const=1)
+        group.add_argument('--disable-shellpipe-security', action='store_true', help='disable checking config permissions for shell pipe filters')
 
         args = parser.parse_args(cmdline_args)
 

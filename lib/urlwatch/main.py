@@ -82,7 +82,10 @@ class Urlwatch(object):
 
     def load_jobs(self):
         if os.path.isfile(self.urlwatch_config.urls):
-            jobs = self.urls_storage.load_secure()
+            if hasattr(self.urlwatch_config, 'disable_shellpipe_security') and self.urlwatch_config.disable_shellpipe_security:
+                jobs = self.urls_storage.load()
+            else:
+                jobs = self.urls_storage.load_secure()
             logger.info('Found {0} jobs'.format(len(jobs)))
         else:
             logger.warning('No jobs file found')
